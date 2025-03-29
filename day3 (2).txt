@@ -1,0 +1,878 @@
+javascript
+
+==>html/css is used to display the content ,we cant make our page live means our page cannt interact with user.
+==>if we want to perfom any logical operation in the browser itself(on the client-side) like calculations ,logical operations,decision making  then js is used.
+==>initial name was livescript
+==>java and js are different.
+==>c,c++,java(first compile and than execute) javac(compile) and jvm(execution)
+==>we dont have any compiler for js. js is a scripting lang , we have to write code and directly execute. no compilation phase for js.
+==>js code doesnot need any compilation,it will be directly executed in the browser. every browser has a component i.e js engine(interpreter). js engine executes js code.
+==>datatypes are meant for compiler not for interpreter.in js there is no compiler that means u need not have to mention datatypes.
+we can directly assigned value to variable // in js we cant assign datatypes explicitly.
+==>datatypes is der in js but datatypes is not under control of programmer.internally it will assigned,changed
+a=5;  //whenever our code will get executed by js engine, at runtime js engine will decide what should be the type of the variable based on the value.
+============================================================================
+How to write js code
+1)create html file and in that inside <script> we can write our js code
+2)create .js file and link that .js filw with html file
+<script src="path of js file"></script>
+
+types of javascripts
+1)inline 
+
+<!-- example on JS implementations -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Js1</title>
+  </head>
+  <body onload="alert('Welcome to My web site')">
+    <h3>demo on inline script</h3>
+	<button onclick="alert('button pushed')"> Push here </button>
+    <br>
+	<button onclick="alert('button pulled')">Pull here</button>
+	<h1 ondblclick="alert('hey, you clicked on h1 2times')">click here</h1>
+
+  </body>		 
+</html>
+
+=================================================
+2)internal
+
+<!-- example on JS implementations -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Js2</title>
+	<script type="text/javascript">
+	   document.write("msg from head sec");
+	</script>
+  </head>		 
+  <body>
+    <h3>demo on internal script</h3>
+	<script type="text/javascript">
+	  document.write("msg from body sec");
+	</script>
+	<br>
+	<script>
+	  document.write("another msg from body sec");
+	</script>
+  </body>		 	
+</html>
+
+
+
+=================================================
+3)external
+
+<!-- example on JS implementations -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Js3</title>
+	<script src="myscript.js"></script>  <!-- linking -->
+  </head>
+  <body>
+    <h3>demo on external script</h3>
+	<script>
+	   fun1();	//calling
+	   fun2();
+	</script>
+	<br>
+	<button onclick="fun1()"> call fun1 </button>
+  </body>
+</html>
+
+
+------------------------
+myscript.js
+ /* program to define external function */
+ function fun1()
+ {
+	document.write("hi, i am fun1")
+ }
+ 
+ function fun2()
+ {
+	document.write("hi, i am fun2");
+ }
+ 
+ /* Note:
+	save this file with a name "myscript.js" in current location */
+=========================================================================
+
+
+================================================================
+//it is  always recommended to have script tag at the bottom of the page.
+after the page is loaded, then only we can perform the operations
+sequence
+1)link ur styles
+2)entire html structure will be der
+3)at the bottom of the body write all js code in script tag.
+
+=====================================================
+==>for js everything is an object.variable,array,function,html elements,browser window,  is considered as an object in js
+==>entire webpage is also an object,whenever we need to perform any operations on anything so we need its object. on this object we will get some predefined function.
+==>so if we need to perform some operations on webpage ex:remove/add dynamically  certain elements for that we need its object, i.e to perform any operations on anything/element,we have to get its object. on this object, we will get predefined functions/methods
+
+ 
+Few already defined objects
+1)document: this object represents entire webpage. with the help of js,dynamically if we want to display some message on webpage or dynamically if we want to add new html element/remove existing element/change content html element or change the background of webpage , we can perform this operation using document object. onto this document object we will get some predefined methds 
+//document obj is used to perform any operation on webpage
+
+==>with the help of document obj we want to display message on webpage, for this we get 1 function i.e write()
+document.write("hello");
+==>; are optional in js but if we r writing multiline in a single line ; is compulsory
+
+2)console:it is for developer. we can log our debugging msg on console to see the progress. which block is executing, we cant show that message on webpage,its not worth for enduser. if we are getting response from server and if we want to check the type of data,we can log on console.
+==>on console we can get js errors.
+
+
+
+3)window: the methods which are available on window object,we can directly call that method
+
+
+ex 1:
+<head>
+</head>
+<body>
+<script>
+	
+document.write("hello");
+console.log("hello console"); 
+window.alert("hello popup"); // when the page is loaded we get alert popup. we cant change alert message.
+a=5;
+b=2;
+c=7.5; 
+console.log(a);
+console.log("value of a is "+a);
+console.log ("sum is "+a+b);
+console.log ("sum is "+(a+b));
+console.log("value of a is "+a  + "value of b is "+b);
+console.log("sum of "+a + "and sum of   "+b + "is"+ (a+b));
+
+//improvises string literal used when we want string concatenation with variable
+console.log(`sum of ${a} and ${b} is ${(a+b)}`);
+
+//in js there is no character datatype .string can be reprented "" or ' ' 
+
+</script>
+</body>
+====================================================================
+operators
+arithmetic operator : + - / * %
+relational operator
+
+<script>
+a=5;
+b=2;
+c=5.0;
+d="5";
+console.log(a==b); //false
+console.log(a==c); //true values are same
+
+console.log(a===c);//it will check type also return true
+console.log(a==d); //true. 
+console.log(a===d);//false 
+</script>
+
+
+=====================================
+logical operators:&& || !
+assignment operator =  += -= *= /=
+conditional operator ?:
+
+==============================================================
+control structure:
+1)sequential
+2)conditional: if,i-else,if else if, nested if, switch case
+3)iterational:for,while,do-while
+
+<script>
+a=5;
+if(a%2==0)
+{
+console.log("even");
+}
+else
+{
+console.log("odd");
+}
+</script> 
+============================================================
+a=5;
+switch(a)
+{
+case 5:console.log("5");
+}
+
+
+=====================================
+*****
+*****
+
+for(i=1;i<=5;i++)
+document.write("*");
+document.write("<br>");
+for(i=1;i<=5;i++)
+document.write("*");
+
+================================================
+
+for(i=1;i<=5;i++)
+{
+	for(i=1;i<=5;i++)
+	{
+		document.write("*");
+	}
+	document.write("<br>");
+}
+===================================================
+Array:
+
+in js datatypes is not in the hands of developer therefore it is a collection of various elements	(homo/hetro )	
+
+a=[10,20,"hello",true,9.3]; //array declaration 
+<script>
+a=[10,20,"hello",true,9.3]; 
+console.log(a);
+console.log("no of elements"+a.length);
+console.log(a[0]);
+console.log(a[1]);
+console.log(a[7]); //undefined in js whenever u r trying to refer data that is not defined yet
+for(i=0;i<a.length;i++)
+console.log(a[i]);
+
+for(i=a.length-1;i>=0;i--)
+console.log(a[i]);
+</script>
+==================================================
+<script>
+a=[10,20,7,50];
+max=a[0];
+for(i=1;i<a.length;i++)
+{
+	if(max<a[i])
+	{
+		max=a[i];
+	}
+}
+console.log(max);
+</script>
+========================================
+Types of array
+1)single dimensional array
+2)multi dimensional array-->collection of multiple 1d array is 2d array.
+
+a=[10,20,7,50];
+b=[10,20,7,50];
+c=[10,20,7,50];
+//we want 100 1d array so we will end up creating more than 100 1d array
+==>so will create 1 array in which multiple 1d array can be stored.
+
+2d array is a collection of multiple 1d array.
+[ [] , [] , [] ]
+
+3d array  is a collection of multiple 2d array
+[  [ [] , [] , [] ]       ]
+
+
+//in 2d array,each 1d array can store different types of elements.
+=============================================================================
+<script>
+a=[[10,20,30],[9,4],[7,2,4,8]];// 2d array which is a collection of different 1d array.
+console.log(a.length);//3
+console.log(a); // [array(3),array(2),array(4)]
+console.log(a[0]);//1st 1array it will give (3)[10,20,30]
+console.log(a[0][0]);// first 0 is index of 2d array , 2nd 0 is index of 1d array
+
+for(i=0;i<a.length;i++)
+{
+	console.log(a[i]); //[10,20,30][9,4] [7,2,4,8]
+	for(j=0;j<a[i].length;j++)
+	{
+		console.log(a[i][j]);// 10 20 30 9 4 7 2 4 8
+}
+
+
+}
+=================================================	
+index 0 contains10,20,30 elements
+index 1 contains 9,4 elements
+
+==============================================================
+function
+
+
+function name(args)
+{
+return value;//optional
+}
+
+<script>
+function show()
+{
+	console.log("hello");
+}
+function add(a,b)
+{
+return a+b;
+}
+show();
+result=add(4,5);
+console.log(result);
+
+
+</script>
+-------------------------------------------------
+ <script>
+        
+      function show()
+       {
+         console.log("hello");
+       }
+     
+      console.log(show);//it display to whom this reference is reffering to
+      show();//it will give call to the function by using reference show  
+        </script>
+
+=================================================================
+ <script>
+        
+      x=function show()
+       {
+         console.log("hello");
+       }
+       //console.log(x);//it display to whom x is referrring to
+       //x();//it executes function show
+       show();//referenceError: show is not defined
+        </script>
+        
+================================================================
+<script>
+        
+      x=function ()
+       {
+         console.log("hello");
+       }
+      
+       x();//it executes function show
+      
+        </script>
+     
+===>function without name is called as anonymous
+=================================================================
+//fat arrow function
+ <script>
+        
+      x= ()=>
+       {
+         console.log("hello");
+       }
+      
+       x();//it executes function show
+      
+        </script>
+========================================
+ <script>
+    
+        res= (x)=>
+        {
+          return x*x;
+        }
+        
+        console.log(res(10));
+        </script>
+=====================================
+<script>
+    
+        res= (x)=> x*x;
+        
+        
+        console.log(res(10));
+        </script>
+        
+=========================================
+<script>
+    
+        res= x=> x*x;
+        
+        
+        console.log(res(10));
+        </script>
+========================================
+day 4:
+JSON -javascript object notation
+suppose we want to represent a data. we want  to represent data for a student
+id,name,marks,phoneno
+
+what are the ways
+1)id=101 name="rohan" marks= 34
+we can store the data but we cant process the data easily when the number of students increases . the operations like searching student,sorting of student,apply on this data  can be difficult because this data are not under 1 roof.
+2)create array 
+s=[101,"ramesh 98,8888888888];//this data are under 1 roof.
+
+
+challenge is if we want to get id value at index number 1,then we have to remember index  number. suppose some1 has stored id at last index. it will not give proper data.
+
+simple approach is to easily store your data under 1 roof. in array we are only storing the values.we are not recognise for what purpose the values has been stored. the value belongs to which purpose?
+ramesh belongs to whether name,address, 
+98 belongs to whether age,houseno,  for which purpose this value has been currently assigned?
+
+==>we need to assigned purpose to a particular value.
+
+we need to store the value and value should  point to purpose this req is fulfilled by JSON
+=========================================================================================
+in json we are storing data in key-value pair
+key:value
+key means purpose
+==>for which purpose we r having that value.
+
+==>JSON is key value pair storage of data. json is an object that store data in key value pair
+
+========================================================================
+how json object looks like. 
+ inside {} we have to assigned multiple elements and in each element should have one key and 1 value
+
+obj={k:v,k:v} //k:v one element, obj is variable
+
+student={id:101,name:"ramesh"} increase data readalibilty,easyness to do operations
+obj object is called as json object
+==>this kind of object,in which we have assigned our data in key value pair is called as json object.
+===========================================================
+<body>
+<script>
+student={id:101,name:"ramesh",marks:98};
+console.log(student);
+
+</script>
+</body>
+=======================================================
+purpose of json object
+
+1)store data in key value pair
+2)in today's world whatever the data transfer between server and client ,this entire data will be in the form of json
+server is responding with some data------>data will be in the form of json
+when client send data to the server, we will send the data in json format
+==>all the data exchanged between client and the server will be one of the format of json regardless of the technology in which  server has been written or implemented
+==>easy to process json data than xml(in olden days,we get data from server in xml format at client side.very difficult and costly to parse xml data,to read and process xml data.
+======================================================================= 
+how to process json data
+
+<body>
+<script>
+student={id:101,name:"ramesh",marks:98};
+console.log(student);
+console.log(student.id);//if we want to get value for a specific key from json object 
+</script>
+</body>
+======================================================================================
+any application like amazon,facebook,the data which we are visible on frontside,that data has come from server is in the format of json and that object we store in a variable.
+======================================================================
+==>we can store any type of data in json object i.e string,booleans,entire array,we can also assigned function in json object
+<html>
+<head>
+
+
+</head>
+<body>
+<script>
+student={id:101,name:"ramesh",marks:98,hobbies :[ "music","sports"]};
+console.log(student.hobbies);
+ console.log(student.hobbies[0]);
+
+</script>
+
+  </body>
+</html>
+=============================================================
+==>we can store json obj inside json object i.e nested object
+==>if we want to store address. i want discrete elements to be stored in an object.it will be easy to apply search operations based on certain key.
+address:"A-701 NARENDRA NAGAR, NAGPUR"; // difficult to read city value from entire address key. for that we need to store address in discret elements.
+
+<body>
+<script>
+<html>
+<head>
+
+
+</head>
+<body>
+<script>
+student={id:101,name:"ramesh",marks:98,
+address:{houseno:1,state:"maharashtra",pincode:"440026"}};
+console.log(student);
+console.log(student.id); 
+console.log(student.address);
+console.log(student.address.houseno);
+
+
+</script>
+
+  </body>
+</html></script>
+</body>
+===============================================
+array of json object is created for n of student details
+
+
+<body>
+<script>
+students=[{id:101,name:"ramesh",marks:98,
+address:{houseno:1,state:"maharashtra",pincode:"440026"}},
+
+{id:102,name:"rahul",marks:68,
+address:{houseno:100,state:"maharashtra",pincode:"447788"}}
+
+];
+console.log(students);
+
+</script>
+</body>
+
+// on to each and every index we r having json object.
+=============================================================================
+PROCESS THE DATA
+<body>
+<script>
+students=[{id:101,name:"ramesh",marks:98,hobbies :[ "music","sports"],
+address:{houseno:1,state:"maharashtra",pincode:"440026"}},
+
+{id:102,name:"rahul",marks:68,hobbies :[ "music","sports"],
+address:{houseno:100,state:"maharashtra",pincode:"447788"}}
+
+];
+console.log(students);
+
+console.log(students[0]);////display data of the first student only
+console.log(students[0].id);
+//log data for each and every student
+for(i=0;i<students.length;i++)
+{
+console.log("hello","student");//we can log more than 1 value
+console.log(students[i].id,students[i].name);//we can log more than 1 value
+console.log(students[i].hobbies);
+console.log(students[i].address);
+
+}
+
+
+</script>
+</body>
+
+
+========================================================================
+//improved version
+
+<body>
+<script>
+students=[{id:101,name:"ramesh",marks:98,hobbies :[ "music","sports"],
+address:{houseno:1,state:"maharashtra",pincode:"440026"}},
+
+{id:102,name:"rahul",marks:68,hobbies :[ "music","sports"],
+address:{houseno:100,state:"maharashtra",pincode:"447788"}}
+
+];
+console.log(students);
+
+console.log(students[0]);////display data of the first student only
+console.log(students[0].id);
+//log data for each and every student
+for(i=0;i<students.length;i++)
+{
+console.log("hello","student");//we can log more than 1 value
+console.log(`${students[i].id},${students[i].name}`);//we can log more than 1 value
+console.log(students[i].hobbies);
+console.log(students[i].address.houseno,students[i].address.state);
+
+}
+
+
+</script>
+</body>
+==========================================================================
+
+<html>
+<head>
+
+
+</head>
+<body>
+<script>
+students=[{id:101,name:"ramesh",marks:98,hobbies :[ "music","sports"],
+address:{houseno:1,state:"maharashtra",pincode:"440026"}},
+
+{id:102,name:"rahul",marks:68,hobbies :[ "singing","dancing"],
+address:{houseno:100,state:"maharashtra",pincode:"447788"}}
+
+];
+
+for(i=0;i<students.length;i++)
+{
+  console.log(`${students[i].id},${students[i].name}`);
+  for(j=0;j<students[i].hobbies.length;j++)
+  {
+  console.log(students[i].hobbies[j]);
+  }
+}
+
+
+
+
+
+</script>
+
+  </body>
+</html>
+===============================================
+
+//we need to find out student with max marks
+
+<body>
+<script>
+students=[{id:101,name:"ramesh",marks:98,hobbies :[ "music","sports"],
+address:{houseno:1,state:"maharashtra",pincode:"440026"}},
+
+{id:102,name:"rahul",marks:68,hobbies :[ "music","sports"],
+address:{houseno:100,state:"maharashtra",pincode:"447788"}}
+
+];
+
+ex:a=[1,2,3,4,5];
+max=a[0]
+
+topper=students[0];
+for(i=1;i<students.length;i++)
+{
+if(topper.marks<students[i].marks)
+{
+topper=students[i];
+}
+}
+console.log(topper);
+
+</script>
+</body>
+===============================================================
+//assignment
+1)display data for those students who got failed
+2)add few more keys in each student obj : physics,maths and calculate total marks and average for every student
+=========================================================================================================
+spread operator ...
+it will work with array and json object
+a=[1,2,3];
+b=[4,5,6];
+req is we need 3rd array that will be consisting all the elements of a and b
+c=[a,b]; // it will become 2d array
+c=[...a,b];// open array,exact values and values will be stored as a element in third array 
+//one array can be spread in another array only. here b is an array
+c=[...a,...b];// when u have more array and u want to make common array,use spread operator
+
+
+<script>
+        a=[1,2,3];
+        b=[4,5];
+        c=[...a,...b];
+        console.log(c);
+        </script>
+==============================================================
+use of spread operator : when u r having 2 different obj/arrays coming from 2 different places , u need to combined them to form a single set of data.
+o1={id:101,name:'anuj'};
+o2={marks:45};
+o3={o1,o2};//becomes nested objected o3={o1:{id:101,name:'anuj'},o2:{marks:45}};
+o3={...o1,...o2};
+console.log(o3);
+
+
+ <script>
+       obj1={id:1,name:"rahul"};
+       obj2={marks:56};
+       obj3={...obj1,...obj2};
+       console.log(obj3);
+        </script>
+
+=============================================================
+rest operator ...
+function show(...arg) // this function can take any number of arguments
+{
+console.log(arg); //rest used when we want to do summation of all arguments
+}
+show(3);
+show(5,7);// when we pass this value,rest operator will create array to store values that we passed
+
+
+<script>
+      function show(...arg)
+      {
+        sum=0;
+        for(i=0;i<arg.length;i++){
+          sum=sum+arg[i];
+        console.log(sum);
+        }
+      }
+      show(3,7);
+    
+        </script>
+=========================================================================
+//scopes
+in js we r having 3 keyword using which we can declare variables.
+var
+let 
+const
+
+<script>
+a=5; // global variable
+function show()
+{
+console.log("in show a ="+a);
+}
+show();
+console.log("outside show a ="+a);
+
+</script>
+
+==================================================================
+<script>
+function show()
+{
+a=5; //if any variable is not declared with any keyword then that variable will always get global scope . by default it is apply on window object.
+console.log("in show a ="+a);
+}
+show();
+console.log("outside show a ="+a);
+
+</script>
+
+=============================================================
+now we want to give specific scopes to a variable
+using var keyword we can declared variable as local or global
+if variable declared outside the function using var keyword then it become global and if declared inside the fuction it become local. 
+
+<script>
+var a=50;
+function show()
+{
+
+console.log("in show a ="+a);
+}
+show();
+console.log("outside show a ="+a);
+
+</script>
+
+==========================================================================
+<script>
+function show()
+{
+var a=5; 
+console.log("in show a ="+a);
+}
+show();
+console.log("outside show a ="+a);// error cannot access outside the function. a is not defined means a use mil nhi raha hai,a is not in scope
+
+</script>
+====================================================================================
+=========================================================================
+
+<script>
+console.log(a);//error , a is not defined
+a=5;
+</script>
+if any variable is not declared with any keyword then by default it will not support hoisting
+
+==================================================
+
+<script>
+console.log(a);//undefined no error  it means variable is declared but value is not defined
+var a=5;
+</script>
+
+================================================================
+====================================
+hoisting:before execution of the code,js engine will read all the code and js engine will place all variable  decl and function defination at top of our code then execution of code begins this process is called as hoisting
+==================================================================================================
+more points on var
+ <script>
+      function dummy()
+    {
+      if(true)
+      {
+          var a=4;
+          console.log(a)
+      }
+    console.log(a);
+
+    }
+    dummy();
+    
+        </script>
+//if var variable declared  in function  as well as in nth block, that variable will be accessible to the whole function.
+the scope of the var variable is through out the function.
+=====================================================
+
+let keyword: it will give variables a block scope. 
+<script>
+function dummy()
+{
+if(true)
+{
+let a=4;
+console.log(a)//4
+}
+console.log(a);//error
+}
+dummy();
+</script>
+
+===================================================================
+<script>
+console.log(a);
+let a=5;//error , cannot access a before initilization
+</script>
+//hoisting happen  otherwise it will give error as a is not defined
+for let , hoisting happen but we can access let varaible before initilization
+
+3 const
+scope is same like let but we cant change the final
+const a=5;
+a=3;//error
+===================================================================
+day 5:
+Functions:
+function show(a)
+{
+console.log(a);
+}
+show();//we can pass boolean,array,json obj,number,string.. we can pass any values to the function argument
+
+
+==================================================
+<script>
+        
+     function show(arg)
+     {
+      console.log(arg);
+      arg();
+     }
+     show(function pass()
+        {
+          console.log("hello students");
+        });
+        </script>
+==========================================
+<script>
+        function pass()
+        {
+          console.log("hello students");
+        }
+     function show(arg)
+     {
+      console.log(arg);
+      arg();
+     }
+     show(pass);
+        </script>
+====================================================
+
+
+

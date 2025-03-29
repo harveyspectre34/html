@@ -1,0 +1,1166 @@
+                                               
+
+ ======================================================
+
+//based on user input, we will validate form
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    .error-text
+    {
+    color:red;
+    }
+</style>
+    </head>
+    <body>
+    <form action="https://www.google.com" onsubmit="return true"> 
+    <input type="text" placeholder="enter name" id="name">
+    <span  class="error-text">name is required</span>
+    <br><br>
+    <input type="password" placeholder="enter password" id="password">
+    <span  class="error-text">password is required</span>
+    <br><br>
+    <input type="submit" value="login">
+    </form>
+</body>
+</html>
+
+//when user clicks on submit button,  action attribute will be executed. but before clicking on submit button, we shld check form is valid or not.if form is valid then only action attribute should be executed. 
+
+//as soon as user click on submit button onsubmit event occurs and it will return boolean value.if
+it is returning true then action will be executed.if it is false,action will not be executed.
+//we will defined some function in javascript,now the function will return either true or false based on the value given by the user.
+
+======================================================================================
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    .error-text
+    {
+    color:red;
+    }
+</style>
+    </head>
+    <body>
+    <form action="https://www.google.com" onsubmit="return validate()">
+    <input type="text" placeholder="enter name" id="name">
+    <span id="error" class="error-text"></span>
+    <br><br>
+    <input type="password" placeholder="enter password" id="password">
+    <span id="error1" class="error-text"></span>
+    <br><br>
+    <input type="submit" value="login">
+    </form>
+    <script>
+        function validate(){
+           const name= document.getElementById("name").value;
+            if(name.length == 0){
+                    document.getElementById("error").innerHTML="name is required";
+                    return false;                  
+    }
+      return true;
+    }        
+    </script>
+    </body>
+    </html>
+    
+=======================================================
+As soon as the user enter username,error message should get vanished.
+1)length shld be greater than 0
+2)whenever user starts typing,we shld vanish that msg.
+onkeyup event will be triggered as soon as key is press.
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    .error-text
+    {
+    color:red;
+    }
+</style>
+    </head>
+    <body>
+    <form action="https://www.google.com" onsubmit="return validate()">
+    <input type="text" placeholder="enter name" id="name" onKeyUp="validateName()">
+    <span id="error" class="error-text"></span>
+    <br><br>
+    <input type="password" placeholder="enter password" id="password">
+    <span id="error1" class="error-text"></span>
+    <br><br>
+    <input type="submit" value="login">
+    </form>
+    <script>
+        function validate(){
+           const name= document.getElementById("name").value;
+           const password= document.getElementById("password").value;
+         
+            if(name.length == 0){
+                    document.getElementById("error").innerHTML="name is required";
+                    return false;  
+                    }
+                        
+            	if(password.length==0)
+	     {
+    			 document.getElementById("error1").innerHTML="password is required";
+                    	return false;  
+            }
+                    return true;    
+}
+     
+      function validateName()
+      {
+        const name= document.getElementById("name").value;
+            if(name.length == 0)
+                    document.getElementById("error").innerHTML="name is required";
+            else
+                document.getElementById("password").innerHTML="";
+          
+            
+
+      }
+            
+            
+    </script>
+    </body>
+    </html>
+    problem is when we dont enter anything and we hit on button,it shows only name is required.password error message is not display.
+because control is return .
+==================================================
+    
+============================================================================
+
+    maintain 1 boolean flag , initally consider form data is valid. 
+generate onkeyevent for password
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    .error-text
+    {
+    color:red;
+    }
+</style>
+    </head>
+    <body>
+    <form action="https://www.google.com" onsubmit="return validate()">
+    <input type="text" placeholder="enter name" id="name" onKeyUp="validateName()">
+    <span id="error" class="error-text"></span>
+    <br><br>
+    <input type="password" placeholder="enter password" id="password" onKeyUp="validatePassword()">
+    <span id="error1" class="error-text"></span>
+    <br><br>
+    <input type="submit" value="login">
+    </form>
+    <script>
+        function validate(){
+           const name= document.getElementById("name").value;
+           const password=document.getElementById("password").value;
+            var isValid=true;
+            if(name.length == 0){
+                    document.getElementById("error").innerHTML="name is required";
+                    isValid=false;  
+                    }
+                    if(password.length == 0){
+                    document.getElementById("error1").innerHTML="password is required";
+                    isValid= false;  
+                    }
+                    return isValid;
+                                 
+            }               
+            
+            
+     
+      function validateName()
+      {
+        const name= document.getElementById("name").value;
+            if(name.length == 0)
+                    document.getElementById("error").innerHTML="name is required";
+            else
+                document.getElementById("error").innerHTML="";
+          }         
+	 function validatePassword()
+      {
+        const password= document.getElementById("password").value;
+            if(password.length == 0)
+                    document.getElementById("error1").innerHTML="password is required";
+            else
+                document.getElementById("error1").innerHTML="";
+          }           
+            
+    </script>
+    </body>
+    </html>
+    
+==================================================================================
+##create onkeyevent for password
+
+    <!DOCTYPE html>
+<html>
+<head>
+<style>
+    .error-text
+    {
+    color:red;
+    }
+</style>
+    </head>
+    <body>
+    <form action="https://www.google.com" onsubmit="return validate()">
+    <input type="text" placeholder="enter name" id="name" onKeyUp="validateName()">
+    <span id="error" class="error-text"></span>
+    <br><br>
+    <input type="password" placeholder="enter password" id="password" onKeyUp="validatePassword()">
+    <span id="error1" class="error-text"></span>
+    <br><br>
+    <input type="submit" value="login">
+    </form>
+    <script>
+        function validate(){
+           const name= document.getElementById("name").value;
+           const password=document.getElementById("password").value;
+            var isValid=true;
+            if(name.length == 0){
+                    document.getElementById("error").innerHTML="name is required";
+                    isValid=false;  
+                    }
+                    if(password.length == 0){
+                    document.getElementById("error1").innerHTML="password is required";
+                    isValid= false;  
+                    }
+                    return isValid;
+                                 
+            }               
+            
+            
+     
+      
+      function validateName()
+      {
+        const name= document.getElementById("name").value;
+            if(name.length == 0)
+                    document.getElementById("error").innerHTML="name is required";
+            else
+                document.getElementById("error").innerHTML="";
+          
+            
+
+      }
+      function validatePassword()
+      {
+        const password= document.getElementById("password").value;
+            if(password.length == 0)
+                    document.getElementById("error1").innerHTML="password is required";
+            else
+                document.getElementById("error1").innerHTML="";
+          
+            
+
+      }
+            
+            
+    </script>
+    </body>
+    </html>
+    ==========================================================================
+ECMA SCRIPT(JS6 CONCEPTS)
+const func6 = ( )
+ => {
+return x + y;
+};
+
+//error
+==============================================
+
+<!-- example on js arrays -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Arrays</title>
+  </head>
+  <body>  
+	<h3>demo on for in loop (js6)</h3>	
+	<script>
+//constant array
+  const a = [11,22,33];
+	  document.write(`A	${a}<br>`);
+	  a[1]=202;  //modification
+	  a[3]=404;  //adding new ele
+	  document.write(`A	${a}<br>`);	 
+   a=[2];
+   document.write(`A	${a}<br>`);	 
+	</script>
+  </body>
+</html>
+=============================================
+
+DESTRUCTURING OF ARRAY
+de-structuring
+>destructing is used to retrieve each value of an array into separate/respective variables/array.	
+Syn1:    let [var1,var2,var3.....] =arrayname;   <== left to right
+		means:  var1=arrayname[0];
+			     var2=arrayname[1];
+Syn2:    let [var1,var2, , , ,var3] =arrayname;    <== left to right (with skip)
+		means:  var1=arrayname[0];
+			     var2=arrayname[1];
+			     var3=arrayname[4];   <== 2cell skipped
+Syn3:    let [var1,var2, ...var3] =arrayname;    <== left to right (with skip)
+		means:  var1=arrayname[0];
+			     var2=arrayname[1];
+			     var3=rest of cells  (2-last)
+
+========================================================
+========================================================
+For in loop
+ 
+for(temp in array)//fetching index by index
+{
+}
+//we can use array within for in loop
+//for in loop supports to manipulate the array
+//it is index based
+
+for of loop
+ 
+for(temp of array)//fetching element by element
+{
+}
+//we cant use array within for of loop
+//for of loop doesnot supports to manipulate the array
+//it is not  index based
+
+
+<!-- example on js arrays -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Arrays</title>
+  </head>
+  <body>  
+	<h3>demo on for in loop (js6)</h3>	
+	<script>
+	  const a = [10,20,30];
+	  
+	  for(let i  in  a)
+	  {
+	    document.write(` ${i} &nbsp; ${a[i]}<br>`);
+		a[i]=a[i]+2 ;
+    document.write(a[i]);		
+	  }	 
+	</script>	 
+	<h3>demo on for of loop (js6)</h3>	
+	<script>
+	  const colors=['red','cyan','black','blue'];
+		
+	  for(let c  of  colors)
+	    document.write(`${c}<br>`);
+	
+	 
+
+let str="mangos";
+	  document.write(`${str[0]}<br>`);
+	  
+	  for(let c of str)
+	    document.write(`${c},`);	
+      for(let i in str)
+	    document.write(`${i},${str[i]}`);		
+	</script>
+  </body>
+</html>
+===================================================
+
+The following example uses an arrow function as an argument of the map() method that transforms an array of strings into an array of the string’s lengths.
+
+<!-- example on js arrays -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Arrays</title>
+  </head>
+  <body>  
+	<h3>demo on for in loop (js6)</h3>	
+	<script>
+let names = ['Apple', 'Orange', 'Mango', 'Banana'];
+let lengths = names.map((name) =>
+{
+  return name.length;
+});
+console.log(lengths);
+ 
+	</script>
+  </body>
+</html>
+======================================
+ 	  
+
+const x=[11,22,33,44,55];
+	  const y=[12,34];
+	  const z=[10,20,30];
+
+	  const xy=[101,...x,202,...y,303];
+	  document.write(`xy	${xy}<br>`);			
+============================================
+<!-- example on js arrays -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Arrays</title>
+  </head>
+  <body>  
+	<h3>demo on array destructuring(JS6)</h3>	
+	<script>
+	  const a=[10,20,30];
+	  /* let i,j,k;
+		i=a[0];
+		j=a[1];
+		k=a[2];	or	*/
+	  let [i,j,k]=a;  //destructuring
+	  document.write(`A	${a}<br>`);
+	  document.write(`i	${i}<br>j	${j}<br>k	${k}<br>`);
+	  
+	  const eles=['html','css','js','bs','angular','react','node','ajax','jquery'];
+	  
+	  let [x,y,z]=eles;	  //destructuring
+	  document.write(`Eles => ${eles}<br>`);
+	  document.write(`x	${x}<br>y	${y}<br>z	${z}<br>`);
+	  
+	  let [p,,,,q]=eles;	//destructuring with skip
+	  document.write(`p	${p}<br>q	${q}<br>`);
+	  
+	  let [e1,,e2,,...e]=eles;	//destructuring with skip & spread
+	  document.write(`e1	${e1}<br>e2	${e2}<br>E	${e}<br>`);	  
+	  
+	  let v1=100, v2=200;
+	  [v2,v1]=[v1,v2];	//swapping
+	  document.write(`v1	${v1}<br>v2${v2}`);	  
+	</script>
+  </body>
+</html>
+=======================================================
+array methods
+
+<!-- example on js arrays -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Arrays</title>
+  </head>
+  <body>  
+	<h3>demo on array methods</h3>	
+	<script>
+	  const eles=[10,20,30,40,50,30,60,70,80,30,90,30];
+	  document.write(`Eles => ${eles}<br>`);
+	  
+	  //includes
+	  document.write(`30 found ${eles.includes(30)}<br>`);
+	  document.write(`55 found ${eles.includes(55)}<br>`);	  
+ 
+	  let str="green apples";
+	  document.write(`${str.includes("app")}<br>`);
+	  document.write(`${str.includes("in")}<br>`);
+	  
+	  document.write(`${[11,22,33].includes(22)}<br>`);
+	  document.write(`${"mangos".includes("go")}<br>`);
+	  
+	  //indexOf  
+	  document.write(`${eles.indexOf(30)}<br>`);
+	  document.write(`${eles.indexOf(100)}<br>`);	  
+	  
+	  
+	  
+	  //lastIndexOf
+	  document.write(`${eles.lastIndexOf(30)}<br>`);
+	 
+	  //reverse
+	  eles.reverse();
+	  document.write(`reversed	${eles}<br>`);
+	  
+	  //sort
+	  eles.sort();
+	  document.write(`sorted	${eles}<br>`);
+
+	    
+	  
+	  //join
+	  document.write(`${eles.join('&#8877;')}<br>`);  
+	</script>
+  </body>
+</html>
+
+	================================
+<!-- example on js arrays -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Arrays</title>
+  </head>
+  <body>  
+	<h3>demo on push & pop methods</h3>	
+	<script>
+	  const eles=[];
+	  eles.push(10);
+	  eles.push(20);
+	  eles.push(30);
+	  let c=eles.push(40);
+	  document.write(`eles	${eles}<br>`);
+
+	  document.write(`${c}<br>`);
+	  let x=eles.pop();
+	  document.write(`1st pop ${x}<br>`);
+	  document.write(`2nd pop ${eles.pop()}<br>`);
+	  document.write(`eles	${eles}<br>`);	 
+	  eles.push(11,22,33);
+	  document.write(`eles	${eles}<br>`);
+	</script>
+  </body>
+</html>
+========================================
+The splice() method adds and/or removes array elements.
+
+The splice() method overwrites the original array.
+array.splice(index, count, item1, ....., itemX)
+index:
+The index (position) to add or remove items.
+count :
+Number of items to be removed.
+<!-- example on js arrays -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Arrays</title>
+  </head>
+  <body>  
+	<h3>demo on array methods</h3>	
+	<script>
+	  const eles=[10,20,30,40,50,60,70,80,90];
+	  document.write(`Eles	=>	${eles}<br>`);
+	  
+	  //deletion		splice(st-ind, count)	
+	  eles.splice(5, 1);
+	  document.write(`aft del eles	=>	${eles}<br>`);
+	  let temp=eles.splice(0,3)
+	  document.write(`aft del eles	=>	${eles}<br>`);
+	  document.write(`temp	=>	${temp}<br>`);	  
+	 
+	  //updation		splice(st-ind, count, new eles)
+	  eles.splice(2,2, 11,22);
+	  document.write(`aft upd eles	=>	${eles}<br>`);	  
+	  
+	  
+	</script>
+  </body>		
+</html>
+================================
+The Array slice() method returns selected elements in an array as a new array. It selects from a given start, up to a (not inclusive) given end. This method does not change the original array, 
+
+Start position. Default is 0.
+Negative numbers select from the end of the array.
+
+End position. Default is last element.
+Negative numbers select from the end of the array.
+<!-- example on js arrays -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Arrays</title>
+  </head>
+  <body>  
+	<h3>demo on array methods</h3>	
+	<script>
+	  const eles=[10,20,30,40,50,60,70,80,90];
+
+	  let a1=eles.slice(0,5);
+	  let a2=eles.slice(5)
+	  document.write(`a1	${a1}<br>`);
+	  document.write(`a2	${a2}<br>`);	  
+	  
+	  let str="This program is free software";
+	  document.write(`${str.slice(0,4)}<br>`);
+
+	  
+	  
+	  document.write(`${eles.slice(-1)}<br>`)
+	  document.write(`${eles.slice(-2)}<br>`)	  
+	  
+	  for(let i=1; i<=9; i++)
+		document.write(`${eles.slice(-i)}<br>`);
+
+	  for(let i=1; i<9; i++)
+		document.write(`${eles.slice(i)}<br>`);		
+   
+	  
+	</script>
+  </body>		
+</html>
+=====================================
+
+<!--
+event handling
+1st Approach
+	using addEventListener() method of element object
+	Syn:-		eleobj.addEventListener("event-name", task);
+						event-name => w/o "on"	ex:	click, submit, change, keypress ....
+						task => fun-call/expr fun/arrow fun
+
+2nd Approach
+	using event property of element object
+	Syn:-		eleobj.event-name=task;
+						event-name => with "on"	ex:	onclick, onsubmit, onchange, onkeypress ....
+						task => fun-call/expr fun/arrow fun
+ -->
+
+
+============================================================
+
+
+<!-- example on DOM -->
+<!DOCTYPE html>
+<html lang="en">   
+ <head>
+  <meta charset="UTF-8">
+  <title>DOM</title>
+ </head>
+ <body>
+	<h3>demo on dom event handling </h3>
+	<button id="bt1"> Push </button> &nbsp; &nbsp; 
+	<button id="bt2"> Pull </button>
+	<br>
+	<script>
+		//1st App
+		const bt1 = document.querySelector("#bt1");
+		bt1.addEventListener("click", function(){ alert("hey, you pushed me") } );
+		//OR
+		document.querySelector("#bt1").addEventListener("click", function(){ alert("hey, you pushed me") } );
+
+		//2nd App
+		const bt2 = document.querySelector("#bt2");
+		bt2.onclick=function(){	alert("hey, you pulled me") }
+		//	OR	
+		document.querySelector("#bt2").onclick=function(){	alert("hey, you pulled me") }
+	</script>
+ </body>
+</html>
+================================
+<!-- example on DOM     
+style ==> this prop used to change html elements styles
+		Syn:-	 ele-obj.style.cssprop=value;
+					 ele-obj.style.cssprop
+CSS:
+		color				width								
+		text-align		background-color		
+-->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>DOM</title>
+ </head>
+ <body>
+	<h3>demo on element properties (changing styles)</h3>
+	<div align="center">
+		<h1 >Hello</h1>
+	<h1 id="idh1">bye</h1>
+		<input type="radio" id="c1" name="color"> <label>Red</label> &nbsp; &nbsp; 
+		<input type="radio" id="c2" name="color"> <label>Green</label> &nbsp; &nbsp; 
+		<input type="radio" id="c3" name="color"> <label>Blue</label>
+	</div>
+	<script>
+		const h1 = document.querySelector("h1");
+		//changing h1 color
+	c1=document.getElementById("c1");
+		c1.onchange=function() { h1.style.color="red"; }
+		document.querySelector("#c2").onchange=function() { h1.style.color="green"; }
+		document.querySelector("#c3").onchange=function() { h1.style.color="blue"; }	
+	</script>
+	
+	
+		
+ </body>
+</html>
+===================================
+<!-- example on Event handling
+in js event handling we can perform in 2 ways, those are:
+	> by using addEventListener()
+			=> addEventListener() is one of dom method, its element object's method
+			Syn:-  ele-obj.addEventListener("event-name", task)
+			Note:	event-name => should be w/o on 
+												ex: click, change, dblclick, load, focus, keypress, ...
+						task ==>  which code we want execute
+							code should be in the form of function/functional-expr/arrow-fun
+							fun-name w/o () 
+
+	> by event property
+			=> events are propeties of element object
+			Syn:-  ele-obj.event-name=task;
+			Note:	event-name => should be with on 
+												ex: onclick, onchange, ondblclick, onload, onkeypress, ...
+						task ==>  which code we want execute
+							code should be in the form of function/functional-expr/arrow-fun
+							fun-name w/o () 
+Note: we apply/attach any no.of events on same tag
+=================================
+<!-- example on DOM -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+	<meta charset="UTF-8">
+	<title>JS</title>
+	<style>
+		img{
+			width:260px;
+			height:260px;
+			border:2px solid;
+			margin-right:40px;
+		}
+	</style>
+ </head>
+ <body>
+	<h3>demo on dom Event handling</h3>
+	<div align="center">
+		<img id="img1" src="images/pic1-f.jpg"/>
+		<img id="img2" src="images/pic2-f.jpg"/>
+		<img id="img3" src="images/pic3-f.jpg "/>
+	</div>
+	<script>
+		const im1 = document.images[0];	//images is predefine 
+		const im2 = document.images[1];
+		const im3 = document.images[2];
+
+		//changing images while mouse over & mouse out
+		im1.onmouseover=()=>{ im1.src="images/pic1-b.jpg" };
+		im1.onmouseout=()=>{ im1.src="images/pic1-f.jpg" };
+
+		im2.onmouseover=()=>{ im2.src="images/pic2-b.jpg" };
+		im2.onmouseout=()=>{ im2.src="images/pic2-f.jpg" };
+
+		im3.onmouseover=()=>{ im3.src="images/pic3-b.jpg" };
+		im3.onmouseout=()=>{ im3.src="images/pic3-f.jpg" };
+	</script>
+  </body>
+</html>  
+
+===============================
+<!-- example on DOM -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ </head>
+ <body>
+		<script>
+class Student{
+constructor(){
+console.log("hello world")
+
+
+}
+}
+var s1=new Student();
+
+	</script>
+  </body>
+</html>  
+
+
+
+//constructor is a function name which initilize the object.
+
+======================================================================
+//define properties for an object
+//define properties for an object,we have to give in constructor with the help of this keyword
+//in js no compiler is  present ,so we have to write this.id property explicitly for an object
+<script>
+
+
+class Student{
+constructor(){
+this.id=10;
+this.name="suraj";
+}
+}
+var s1=new Student();
+console.log(s1.id,s1.name);
+var s2=new Student();
+console.log(s2.id,s2.name);
+
+
+
+	</script>
+============================================================
+//para constructor
+
+class Student{
+constructor(id,name){
+this.id=id;
+this.name=name;
+}
+}
+var s1=new Student(101,"rr");
+console.log(s1.id,s1.name);
+var s2=new Student(102,"yy");
+console.log(s2.id,s2.name);
+======================================================================
+note: in class if we are defining any function inside class,no need to write function keyword.
+
+===================================================================================================
+<!-- example on DOM -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ </head>
+ <body>
+		<script>
+class Student{
+constructor(id,name){
+this.id=id;
+this.name=name;
+}
+show()// no need of function keyword
+{
+  let id=199;
+	console.log(this.id);//if we want to access id of this current object
+	console.log(this.name);
+
+	console.log(id);//undefined(it will search for local/global variable whose name is id
+
+}
+}
+var s1=new Student(101,"rr");
+s1.show();
+var s2=new Student(102,"yy");
+s2.show();
+
+
+
+    </script>
+  </body>
+</html>  
+
+===============================================================================
+object
+<!-- example on JS Classes -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Classes</title>
+  </head>
+  <body>
+		<h3>demo on class</h3>
+   		<script>
+			//class creation
+			class Sample   
+			{
+				//let a=10;	error
+				//var b=20;	error
+				//const c=1;	error
+				//d=11;
+			}
+		 
+			const ob1 = new Sample();	 //object creation & init
+			const ob2 = new Sample();	 //object creation & init
+			document.write(`${ob1}<br>${ob1}<br>`);
+
+			Sample.prototype.a=101;		//adding new prop to class
+			ob1.x=100;	//adding new prop to object ob1 only
+			ob2.y=200;   //adding new prop to object ob2 only
+			document.write(`A	:${ob1.a}<br> X	:${ob1.x}<br>`);
+			document.write(`A	:${ob2.a}<br> Y	:${ob2.y}<br>`);
+		</script>
+  </body>
+</html>
+
+===================================
+<!-- example on JS Classes -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Classes</title>
+		<script src="Test.js"></script>
+  </head>
+  <body>
+		<h3>demo on class with methods</h3>
+   		<script>
+      class Test
+  {
+	method1()
+	{
+		document.write(`hi, i am method1<br>`);
+	}
+	method2=function(){
+		document.write(`hi, i am method2<br>`);
+	}
+}
+			const ob = new Test();	 //object creation & init
+			ob.method1();	//calling method
+			ob.method2();   //calling method
+		</script>
+  </body>
+</html>
+==============================================
+<!-- example on JS Classes -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     </head>
+  <body>
+		<h3>demo on constructor</h3>
+   		<script>
+        class Sample
+{
+	constructor() {
+		document.write(`hi, i am constructor<br>`);
+	}
+	//its method
+	Sample() {
+		document.write(`hi, i am Sample<br>`);
+	}	 
+}
+			//object creation & init
+			const ob = new Sample();	 //constructor calling
+			//ob.Sample();
+			new Sample();	//constructor calling
+		</script>
+  </body>
+</html>
+=================================================
+<!-- 
+constructors
+	types: 
+		> non-parameterized constructor 
+		> parameterized constructor 
+
+Non-parameterized constructor 
+	constructor created without any parameter is called Non-parameter constructor.
+	Adv: used for static initialization of objects, means each and every object was initialized with the same data	 
+
+parameterized constructor 
+	constructor created with parameters is called "Parameter constructor".
+	Adv:  used for dynamic initialization of objects, means every object initialized with different data	 -->
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+    </head>
+    <body>
+      <h3>demo on non-parameterized constructor</h3>
+         <script>
+          //example on creating class with constructor
+class Book
+{
+	//non-parameterized constructor
+	constructor()
+	{
+		//properties init
+		this.title="HTML";
+		this.author="Tim";
+		this.price=500;
+		this.year=2022;
+	}	   
+	//method
+	getBookInfo(){
+		return `${this.title} &nbsp;  ${this.author} &nbsp; ${this.price} &nbsp; ${this.year}`; 
+	}
+}
+        const b1 = new Book();	 //object creation & init
+        const b2= new Book();
+        document.write(`Title	:${b1.title}<br>`);
+        document.write(`Author	:${b1.author}<br>`);
+        document.write(`Price	:${b1.price}<br>`);
+        document.write(`Year	:${b1.year}<br>`);
+  
+        document.write(`${b2.getBookInfo()}<br>`);
+      </script>
+    </body>
+  </html>
+  
+=====================================
+
+<!-- example on JS Classes -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Classes</title>
+		<script src="Books.js"></script>
+  </head>
+  <body>
+		<h3>demo on parameterized constructor</h3>
+   		<script>
+        //example on creating class with constructor
+class Books
+{
+	//parameterized constr
+	constructor(title,author,price,year)
+	{
+		//properties init
+		this.title=title;		//property=parameter
+		this.author=author;
+		this.price=price;
+		this.year=year;
+	}
+	//method
+	getBookInfo() {
+		return `${this.title} &nbsp;  ${this.author} &nbsp; ${this.price} &nbsp; ${this.year}`; 
+	}
+}
+			//object creation & init 
+			const b1 = new Books(101,"HTML","DR",400,2022);	 //constructor calling  
+			//object creation & init 
+      
+			const b2= new Books(202,"UI Tech","TIm",600,2023);  //constructor calling  
+
+			document.write(`Title	:${b1.title}<br>`);
+			document.write(`Author	:${b1.author}<br>`);
+			document.write(`Price	:${b1.price}<br>`);
+			document.write(`Year	:${b1.year}<br>`);
+
+			document.write(`${b2.getBookInfo()}<br>`);
+		</script>
+  </body>
+</html>
+================================================
+<!--	example on class with members -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>OOPS</title>
+ </head>
+ <body>
+   <h2>demo on class with members</h2>
+   <script>
+     class Student
+     {
+		  constructor(rno,name,m1,m2,m3) //param constructor
+		  {
+			   this.rno=rno;		//properties init
+			   this.name=name;
+			   this.m1=m1;
+			   this.m2=m2;
+			   this.m3=m3;
+		  }
+		 getTotal(){
+			return  this.m1+this.m2+this.m3;
+		  }
+		  findGrade()
+		  {
+		   let avg=(this.m1+this.m2+this.m3)/3;
+		   let grade;
+
+		   if(this.m1>=40 && this.m2>=40 && this.m3>=40)   //all subj pass or not
+		   {
+			  if(avg>=80)
+				grade="A+";
+			  else if(avg>=70)
+				grade="A";
+			  else if(avg>=60)
+				grade="B";
+			  else if(avg>=50)
+				grade="C";
+			  else
+				grade="D";
+		   }else{
+			 grade="Fail";
+		   }
+			return grade;	
+		  }        
+    } //class end
+
+	//object creation & init
+     const stu1 = new Student(1,"tim",65,56,60); 
+     const stu2 = new Student(2,"james",35,70,75);
+
+     document.write(`${stu1.rno} &nbsp;&nbsp;&nbsp; ${stu1.name} &nbsp;&nbsp;&nbsp; <br>`);
+     document.write(`Total Marks  : ${stu1.getTotal()} <br>`);
+     document.write(`Grade  : ${stu1.findGrade()} <br><br>`);
+
+     document.write(`${stu2.rno} &nbsp;&nbsp;&nbsp; ${stu2.name} &nbsp;&nbsp;&nbsp; <br>`);
+     document.write(`Total Marks  : ${stu2.getTotal()} <br>`);
+     document.write(`Grade  : ${stu2.findGrade()}`);
+   </script>
+ </body>
+</html>
+====================================================
+prototype
+<!-- exmaple on prototype with literal -->
+<html>
+ <head>
+   <script>
+      //creating object
+      const p = {name:"Soap", unitPrice:50, qty:5};	 //Object.name="Soap"
+   </script>
+ </head>
+<body>
+  <script>
+    //adding new property to an existing object
+	 Object.prototype.gst=14;
+	 Object.prototype.discount=3;
+
+    //adding new method to an existing object
+    Object.prototype.getAmount=function() {
+																  amt=this.qty*this.unitPrice;  
+																  gstamt=amt*this.gst/100;   
+																  da=amt*this.discount/100;		
+																  return amt+gstamt-da;
+														   };
+
+	document.write(`Name	: ${p.name} <br>`);
+	document.write(`Qty	: ${p.qty} <br>`);
+	document.write(`UnitPrice	: ${p.unitPrice} <br>`);
+	document.write(`TotalAmt		:${p.getAmount()} <br>`);
+
+  </script>
+</bodY>
+</html>
+=================================================
+<!-- exmaple on prototype -->
+<html>
+ <head>
+   <script>
+	class Product{
+
+		constructor(name,qty,unitPrice)  //constructor function
+     {
+       this.name=name;
+       this.qty=qty;
+       this.unitPrice=unitPrice; 
+	 }	
+	}
+	   const p = new Product("Soap", 2, 42.50);
+	const p2 = new Product("aaa", 4, 23.50);
+   </script>
+ </head>
+<body>
+  <script>   
+    //adding new property to an existing object
+	Product.prototype.discount=10;
+    //adding new method to an existing object
+    Product.prototype.getAmount=function(){
+																return this.qty*this.unitPrice;
+														};
+
+	document.write(`Name	: ${p.name} <br>`);
+	document.write(`Qty	: ${p.qty} <br>`);
+	document.write(`UnitPrice	 : ${p.unitPrice} <br>`);
+	document.write(`TotalAmt	 : ${p.getAmount()} <br>`);
+	document.write(`Discount	: ${p.discount} <br>`);
+	document.write(`BillingAmt	: ${p.getAmount()-p.discount}`);
+
+    document.write(`Name	: ${p2.name} <br>`);
+	document.write(`Qty	: ${p2.qty} <br>`);
+	document.write(`UnitPrice	 : ${p2.unitPrice} <br>`);
+	document.write(`TotalAmt	 : ${p2.getAmount()} <br>`);
+	document.write(`Discount	: ${p2.discount} <br>`);
+	document.write(`BillingAmt	: ${p2.getAmount()-p.discount}`);
+  </script>
+</bodY>					 
+</html>
+
+
+
+
+
+
+
